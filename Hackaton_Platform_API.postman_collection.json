@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "hackaton-platform-api",
+    "name": "Hackaton Platform API",
+    "description": "API para gerenciamento de documentos e arquivos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Documentos",
+      "item": [
+        {
+          "name": "Criar Documento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Novo Documento\",\n  \"content\": \"Conteúdo do documento...\"\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/documents",
+              "host": ["{{api_url}}"],
+              "path": ["documents"]
+            }
+          }
+        },
+        {
+          "name": "Listar Documentos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/documents?limit=10&offset=0",
+              "host": ["{{api_url}}"],
+              "path": ["documents"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obter Documento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/documents/{{doc_id}}",
+              "host": ["{{api_url}}"],
+              "path": ["documents", "{{doc_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Atualizar Documento",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Documento Atualizado\",\n  \"content\": \"Conteúdo atualizado...\"\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/documents/{{doc_id}}",
+              "host": ["{{api_url}}"],
+              "path": ["documents", "{{doc_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Deletar Documento",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{api_url}}/documents/{{doc_id}}",
+              "host": ["{{api_url}}"],
+              "path": ["documents", "{{doc_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Arquivos e PDFs",
+      "item": [
+        {
+          "name": "Gerar PDF",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document_id\": \"{{doc_id}}\",\n  \"title\": \"Relatório\",\n  \"content\": \"Conteúdo do PDF...\"\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/pdf",
+              "host": ["{{api_url}}"],
+              "path": ["pdf"]
+            }
+          }
+        },
+        {
+          "name": "Upload de Arquivo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document_id\": \"{{doc_id}}\",\n  \"file_name\": \"documento.txt\",\n  \"content\": \"Conteúdo do arquivo...\"\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/upload",
+              "host": ["{{api_url}}"],
+              "path": ["upload"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "api_url",
+      "value": "https://api.example.com/dev",
+      "type": "string"
+    },
+    {
+      "key": "doc_id",
+      "value": "uuid-1234",
+      "type": "string"
+    }
+  ]
+}
